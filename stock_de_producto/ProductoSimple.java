@@ -4,20 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+
+@Entity
+@DiscriminatorValue("producto_simple")
 
 @Getter
 @Setter
-
-@Entity
-@Table (name = "productoSimple")
 public class ProductoSimple extends Producto{
-  @Column(name = "precio")
+
+  @Column (name = "precio")
   private Double precio;
+
   @Column (name = "stock")
   private Integer stock;
-
 
   public Double precio() {
     return this.precio;

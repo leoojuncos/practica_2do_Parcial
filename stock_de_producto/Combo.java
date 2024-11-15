@@ -8,22 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "combo")
-public class Combo extends Producto{
-
-  @Id
-  private Long id;
+@DiscriminatorValue("combo")
+public class Combo extends Producto {
 
   @Getter
-  @OneToMany (mappedBy =  "combo")
+  @ManyToMany
+  @JoinTable (
+          name = "combo_productos",
+          joinColumns = @JoinColumn (name = "combo_id"),
+          inverseJoinColumns = @JoinColumn (name = "producto_id")
+  )
   private List<Producto> productos;
 
-  @Column (name = "precio_total", nullable = false)
-  private Double precioTotal;
-
-  public Combo() {
+  public Combo(){
       this.productos = new ArrayList<Producto>();
-      this.precio();
   }
 
   public void agregarProducto(Producto producto){
@@ -31,8 +29,6 @@ public class Combo extends Producto{
   }
 
   public Double precio(){
-    this.precioTotal = this.productos.stream()
-                                     .mapToDouble(p-> p.precio()).sum();
-    return this.precioTotal;
+    return this.productos.stream().mapToDouble(p-> p.precio()).sum();
   }
 }
