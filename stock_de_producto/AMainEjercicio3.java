@@ -1,8 +1,5 @@
 package ar.edu.utn.frba.dds.ejercicio_03;
 
-import ar.edu.utn.frba.dds.ejercicio_03.decorado.DescuentoFijo;
-import ar.edu.utn.frba.dds.ejercicio_03.decorado.Packaging;
-
 public class AMainEjercicio3 {
   // corre el metodo main para persistir y ver como queda en tu DB!
 

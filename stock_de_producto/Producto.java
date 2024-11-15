@@ -4,30 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
-
-@Entity
-@Table (name = "productos")
-@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name = "tipo_producto")
-
 @Getter
 @Setter
+
+@Entity
+//@Table (name = "producto")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+
 public abstract class Producto {
-
-  @Id
-  @GeneratedValue
-  private Integer id;
-
-  @Column (name = "nombre")
+    @Id
+    @GeneratedValue
+private Long id;
+    @Column (name = "nombre")
   private String nombre;
-
-  @ManyToOne
-  @JoinColumn(name = "marca_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name="marca_id")
   private Marca marca;
-
-  @ManyToMany(mappedBy = "productos")
-  private List<Combo> combos;
 
   public Producto() {
 

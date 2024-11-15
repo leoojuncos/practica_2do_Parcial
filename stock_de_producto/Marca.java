@@ -4,18 +4,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.UUID;
 
-@Entity
-@Table (name = "marca")
 @Getter
 @Setter
+@Entity
+@Table(name = "marca")
 public class Marca {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 }
